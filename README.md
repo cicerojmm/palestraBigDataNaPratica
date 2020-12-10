@@ -6,6 +6,7 @@ O próposito da palestra é mostrar como funciona algumas ferramentas utilizadas
 
 Os dados são relacionados a ações da B3, onde são consultados através do site Yahoo Finances. armazenados no ElasticSearch e S3, sendo a visualização em tempo real através do Kibana.
 
+Link dos slides: https://bit.ly/3a3vlNV
 
 ### Arquitetura do Projeto
 ![alt text](https://github.com/cicerojmm/palestraBigDataNaPratica/blob/main/images/arquitetura-projeto.png?raw=true)
