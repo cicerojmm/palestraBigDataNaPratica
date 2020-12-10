@@ -1,4 +1,4 @@
-# Palestra BigData Na Pratica
+# Palestra Big Data Na Pratica
 
 Palestra sobre Big Data na prática utilizando NiFi, ElasticSeach e NiFi
 
