@@ -3,11 +3,11 @@ services:
    web:
       container_name: server-api-flask
       hostname: server-api-flask
-      build: .
+      build: api-consulta-b3/
       ports:
          - "5000:5000"
       volumes:
-         - .:/code
+         - ./api-consulta-b3:/code
       networks:
          - pipeline-data-net
 
