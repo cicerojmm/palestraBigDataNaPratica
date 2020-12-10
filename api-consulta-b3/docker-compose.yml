@@ -1,0 +1,16 @@
+version: '3'
+services:
+   web:
+      container_name: server-api-flask
+      hostname: server-api-flask
+      build: .
+      ports:
+         - "5000:5000"
+      volumes:
+         - .:/code
+      networks:
+         - pipeline-data-net
+
+networks:
+  pipeline-data-net:
+    driver: bridge
