@@ -1,6 +1,6 @@
 # Palestra Big Data Na Pratica
 
-Palestra sobre Big Data na prática utilizando NiFi, ElasticSeach e NiFi
+Palestra sobre Big Data na prática utilizando NiFi, ElasticSeach e S3
 
 O próposito da palestra é mostrar como funciona algumas ferramentas utilizadas em Big Data para montar uma Data Lake e analisar dados em tempo real.
 
