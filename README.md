@@ -1,4 +1,4 @@
-#Palestra BigData Na Pratica
+# Palestra BigData Na Pratica
 
 Palestra sobre Big Data na prática utilizando NiFi, ElasticSeach e NiFi
 
@@ -8,7 +8,7 @@ Os dados são relacionados a ações da B3, onde são consultados através do si
 
 
 ### Arquitetura do Projeto
-![alt text](https://github.com/cicerojmm/palestraBigDataNaPratica/blob/main/images/pipeline-nifi.png?raw=true)
+![alt text](https://github.com/cicerojmm/palestraBigDataNaPratica/blob/main/images/arquitetura-projeto.png?raw=true)
 
 ### Pipeline construida no NiFi
-![alt text](https://github.com/cicerojmm/palestraBigDataNaPratica/blob/main/images/arquitetura-projeto.png?raw=true)
+![alt text](https://github.com/cicerojmm/palestraBigDataNaPratica/blob/main/images/pipeline-nifi.png?raw=true)
