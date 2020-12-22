@@ -1,0 +1,65 @@
+Description: Cria um Bucket S3
+
+Resources:
+  AppEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0dd9f0e7df0f0a138
+      KeyName: nova-ec2-ohio
+      SecurityGroups:
+        - !Ref AppEC2SG
+      UserData: !Base64 |
+        #!/bin/bash
+        apt-get update -y
+        apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+        apt-get update -y
+        apt install docker-ce -y
+        usermod -aG docker ubuntu
+  AppEC2SG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: portas liberadas para acesso publico
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '5000'
+        ToPort: '5000'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '8080'
+        ToPort: '8080'
+        CidrIp: 0.0.0.0/0
+  BucketS3DataLake:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      BucketName: datalake-bigdata-pratica
+  ElasticSeachService:
+    Type: AWS::Elasticsearch::Domain
+    Properties: 
+      DomainName: "es-pipeline-dados"
+      ElasticsearchVersion: "7.4"
+      ElasticsearchClusterConfig:
+        InstanceType: t3.small.elasticsearch
+        InstanceCount: 1
+      EBSOptions:
+        EBSEnabled: true
+        VolumeType: gp2
+        VolumeSize: 10
+      AccessPolicies: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Principal:
+              AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+            Action: "es:*"
+            Resource: !Sub "arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/es-pipeline-dados/*"
